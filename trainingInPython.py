@@ -1,4 +1,6 @@
 import numpy as np
+from random import randint
+
 
 # def tax(bill):
 # 	"""Adds 8% tax to a restaurant bill"""
@@ -82,7 +84,6 @@ import numpy as np
 # def trip_cost(city, days, spending_money):
 # 	total = plane_ride_cost(city) + rental_car_cost(days) + hotel_cost(days -1) + spending_money
 # 	print plane_ride_cost(city) + rental_car_cost(days) + hotel_cost(days -1);
-# 	print "rental car = %d,plane ride cost = %d,hotel_cost = %d,spending_money = %d" % (rental_car_cost(days), plane_ride_cost(city), hotel_cost(days-1), spending_money)
 # 	print total
 # trip_cost("Tampa", 9, 600)
 
@@ -401,29 +402,228 @@ import numpy as np
 # get_class_average(students)
 
 # one-line list comprehension
-x = [1,2,3,4,5,6,7,8,9]
-out = [numbers ** 2 for numbers in x]
-print out
-#  lambda functions
-double = lambda x: x * 2
-print double(5)
+# list_of_x_numbers = [1,2,3,4,5,6,7,8,9]
+# one_line = [numbers ** 2 for numbers in list_of_x_numbers]
+# print one_line
+
+
+
+
+# #  lambda functions
+# double = lambda x: x * 2
+# print double(5)
+
 # Map and Filter
 #Map
-seq = [1,2,3,4,5]
-double = list(map(lambda x: x * 2, seq))
-print double
-#Filter
-seq = [ 1,2,3,4,5]
-filt = list(filter(lambda x: x > 2, seq))
-print filt
-# Arange
-# np.arange(start,stop,skip)
-array =  np.arange(0,100,3)
-print array
-# Linspace
-# np.linspace(start, stop, num)
-linspace = np.linspace(2.0, 3.0, 100)
-print linspace
+# seq = [1,2,3,4,5]
+# double = list(map(lambda x: x * 2, seq))
+# print ("map {}".format(double))
+# #Filter
+# seq = [ 1,2,3,4,5]
+# filt = list(filter(lambda x: x > 2, seq))
+# print "filter {}".format(filt)
+
+# # Arange
+# # np.arange(start,stop,skip)
+# array =  np.arange(0,100,3)
+# print array
+
+# # Linspace
+# # np.linspace(start, stop, num)
+# linspace = np.linspace(2.0, 3.0, 100)
+# print linspace
+
+# Ranges
+# def my_function(x):
+#   for i in range(0, len(x)):
+#     x[i] = x[i]
+#   return x
+
+# print my_function(range(-10,300))
+
+
+# def range2(range1):
+# 	for numbers in range(0, len(range1)):
+# 		range1[numbers] = range1[numbers]
+# 	return range1
+
+# print range2(range(emptyList))
+
+# string1 = ("this is a long string to split")
+# str_split = string1.split(' ')
+# print str_split[0:4]
+# emptyList = str_split
+
+
+# n = ["Michael", "Lieberman"]
+# def total(numbers):
+#   result = ""
+#   for integers in range(len(numbers)):
+#     result += numbers[integers]
+#     print numbers[integers]
+#   return result
+
+# total(n)
+
+# n = [[1, 2, 3], [4, 5, 6, 7, 8, 9]]
+# def flatten(lists):
+#   results = []
+#   for numbers in lists:
+#     for integers in numbers:
+#       results.append(integers)
+#   return results
+
+# print flatten(n)
+#range(len(blocks))
+
+# def battleship_board(blocks):
+# 	board = []
+# 	for items in range(len(blocks)):
+# 		board.append(blocks * 5)
+# 	return board
+		
+
+# squares = ['O']
+# print battleship_board(squares)
+
+# num_range = range(3, 20, 2)
+
+# empty_num_range = []
+
+# for n in num_range:
+# 	empty_num_range = ([n]*8)
+# 	print empty_num_range
+
+
+# rng = range(20)
+# empty_list = []
+
+# for numbers in rng:
+# 	empty_list.append([] * 10)
+# print empty_list[2]
+
+
+# letters = ['a', 'v', 'd', 'r', 'y', 'w', 'l', 'c']
+# print (letters)
+# print (" ".join(letters))
+# print ("---".join(letters))
+
+
+# Battleship game in Python
+
+board = []
+
+
+
+for x in range(0, 5):
+  board.append(["O"] * 5)
+
+def print_board(board):
+  for row in board:
+    print (" ".join(row))
+
+def random_row(board):
+  return randint(0, len(board) - 1)
+
+def random_col(board):
+  return randint(0, len(board[0]) - 1)
+
+ship_row = random_row(board)
+ship_col = random_col(board)
+
+def players_turn():
+	for turn in range(4):
+		#players_turn += turn
+		print ("turn", turn +1)
+		guess_row = int(raw_input("Guess Row: "))
+		guess_col = int(raw_input("Guess Col: "))
+
+def hit():
+	print ("direct hit")
+	board[guess_col][guess_row] = "H"
+	print_board(board)
+	players_turn()
+
+def miss():
+	print ("you missed, try again")
+	board[guess_col][guess_row]
+	print_board(board)
+	players_turn()
+
+def out_of_range():
+	print ("this is out of the range of the battle field")
+	players_turn()
+
+if_yes = str(raw_input("Do you want to play Battleship? "))
+
+if if_yes == 'yes':
+	print ship_row
+	print ship_col
+	guess_row = int(raw_input("Guess Row: "))
+	guess_col = int(raw_input("Guess Col: "))
+
+if guess_col == ship_col and guess_row == ship_row:
+	hit()
+elif guess_col not in range(5) or guess_row not in range(5) :
+	out_of_range()
+else:
+	miss()
+
+
+
+
+# if guess_row == ship_row and guess_col == ship_col:
+# 	board[guess_col][guess_row] = "H"
+# 	print_board(board)
+# 	print ("direct hit")
+# 	players_turn()
+# else: 
+# 	if guess_row not in range(5) or guess_col not in range(5):
+# 		print ("this is out of the range of the battle field")
+# 		# guess_row = int(raw_input("Guess Row: "))
+# 		# guess_col = int(raw_input("Guess Col: "))
+# 		players_turn()
+# 		print ("do you see me")
+# 	if guess_row == ship_row and guess_col == ship_col:
+# 		print "direct hit"
+# 		board[guess_col][guess_row] = "H"
+# 		print_board(board)
+# 	elif board[guess_col][guess_row] == "X":
+# 		print ("You guessed that one already.")
+# 		players_turn()
+# 	else:
+# 		guess_col != ship_col or guess_row != ship_row
+# 		print " you missed"
+# 		board[guess_col][guess_row] = "X"
+# 		print_board(board)
+# 		players_turn()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
